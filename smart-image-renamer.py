@@ -212,12 +212,13 @@ if __name__ == '__main__':
                                   'Folder': os.path.basename(root),
                                   'File': os.path.splitext(f)[0],
                                   'Seq': '{0:0{1}d}'.format(next(seq), seq_width),
-                                  'ext': exif_data.get('format', '')
+                                  'ext': os.path.splitext(f)[1]
+#                                  'ext': exif_data.get('format', '')
                                   }
                 new_image_data.update(img_timestamp.groupdict())
 
                 # Generate new file name according to user provided format
-                new_file_name = (input_format + '.{ext}').format(**new_image_data)
+                new_file_name = (input_format + '{ext}').format(**new_image_data)
                 if destination:
                     new_file_name_complete = os.path.join(destination, new_file_name)
                 else:
